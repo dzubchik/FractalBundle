@@ -61,7 +61,7 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
             } elseif ($resource instanceof Collection) {
                 $instance = get_class($resource->getData()[0]);
             } else {
-                throw new \RuntimeException('You should either provide transformer directly or put it to resolver.');
+                return;
             }
 
             /** @var ResolverInterface $resolver */
