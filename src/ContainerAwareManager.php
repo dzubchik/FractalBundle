@@ -33,6 +33,26 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
      */
     public function createData(ResourceInterface $resource, $scopeIdentifier = null, Scope $parentScopeInstance = null)
     {
+        $this->resolveTransformer($resource);
+        $scopeInstance = new Scope($this, $resource, $scopeIdentifier);
+
+        // Update scope history
+        if ($parentScopeInstance !== null) {
+            // This will be the new children list of parents (parents parents, plus the parent)
+            $scopeArray = $parentScopeInstance->getParentScopes();
+            $scopeArray[] = $parentScopeInstance->getScopeIdentifier();
+
+            $scopeInstance->setParentScopes($scopeArray);
+        }
+
+        return $scopeInstance;
+    }
+
+    /**
+     * @param ResourceInterface $resource
+     */
+    private function resolveTransformer(ResourceInterface $resource)
+    {
         if (null === $resource->getTransformer()) {
             $serviceRegistry = $this->container->get('fractal.transformer.resolvers');
 
@@ -56,17 +76,5 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
                 }
             }
         }
-        $scopeInstance = new Scope($this, $resource, $scopeIdentifier);
-
-        // Update scope history
-        if ($parentScopeInstance !== null) {
-            // This will be the new children list of parents (parents parents, plus the parent)
-            $scopeArray = $parentScopeInstance->getParentScopes();
-            $scopeArray[] = $parentScopeInstance->getScopeIdentifier();
-
-            $scopeInstance->setParentScopes($scopeArray);
-        }
-
-        return $scopeInstance;
     }
 }
