@@ -9,7 +9,7 @@
     </parameters>
 
     <services>
-        <service id="paymaxi_fractal.manager" class="%paymaxi__fractal.manager.class%">
+        <service id="paymaxi_fractal.manager" class="%paymaxi_fractal.manager.class%">
 	        <call method="setContainer">
 		        <argument type="service" id="service_container"/>
 	        </call>
