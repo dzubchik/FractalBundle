@@ -2,7 +2,7 @@
 
 namespace Tests\Fixtures;
 
-use SamJ\FractalBundle\SamJFractalBundle;
+use Paymaxi\FractalBundle\PaymaxiFractalBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\Reference;
@@ -43,7 +43,7 @@ class App extends Kernel
     {
         $bundles = [
             new FrameworkBundle(),
-            new SamJFractalBundle(),
+            new PaymaxiFractalBundle(),
             new AppBundle(),
         ];
 

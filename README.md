@@ -8,7 +8,7 @@ This bundle provides integration of [league/fractal](https://github.com/thephple
 First of all you need to add dependency to composer.json:
 
 ```
-composer require samj/fractal-bundle
+composer require Paymaxi/fractal-bundle
 ```
 
 Then register bundle in `app/AppKernel.php`:
@@ -18,7 +18,7 @@ public function registerBundles()
 {
     return [
         // ...
-        new SamJ\FractalBundle\SamJFractalBundle(),
+        new Paymaxi\FractalBundle\PaymaxiFractalBundle(),
     ];
 }
 ```
