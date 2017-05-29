@@ -35,7 +35,7 @@ final class RegistryResolver implements ResolverInterface
      */
     public function supports(string $class)
     {
-        $this->registry->has($class);
+        return $this->registry->has($class);
     }
 
     /**
