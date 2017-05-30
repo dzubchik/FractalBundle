@@ -86,14 +86,14 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/packagist/v/paymaxi/fractal-bundle.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/paymaxi/FractalBundle/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/paymaxi/fractal-bundle.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/paymaxi/fractal-bundle.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/paymaxi/FractalBundle.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/paymaxi/FractalBundle.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/paymaxi/fractal-bundle.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/paymaxi/fractal-bundle
 [link-travis]: https://travis-ci.org/paymaxi/FractalBundle
-[link-scrutinizer]: https://scrutinizer-ci.com/g/paymaxi/fractal-bundle/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/paymaxi/fractal-bundle
+[link-scrutinizer]: https://scrutinizer-ci.com/g/paymaxi/FractalBundle//code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/paymaxi/FractalBundle/
 [link-downloads]: https://packagist.org/packages/paymaxi/fractal-bundle
 [link-author]: https://github.com/paymaxi/fractal-bundle
 [link-contributors]: ../../contributors
