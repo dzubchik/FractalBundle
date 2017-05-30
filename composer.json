@@ -16,7 +16,7 @@
     "require": {
         "php": ">=7.0",
         "league/fractal": "^0.16.0",
-        "sylius/registry": "^0.19",
+        "paymaxi/compiler": "0.1.x-dev",
         "symfony/framework-bundle": "^2.7|^3.0"
     },
     "require-dev": {

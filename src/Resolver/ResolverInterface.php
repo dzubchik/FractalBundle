@@ -16,16 +16,18 @@ interface ResolverInterface
     /**
      * @param string $class
      *
-     * @return bool
+     * @param $resourceTransformer
      *
+     * @return bool
      */
-    public function supports(string $class);
+    public function supports(string $class, $resourceTransformer);
 
     /**
      * @param string $class
      *
-     * @return TransformerAbstract
+     * @param $resourceTransformer
      *
+     * @return TransformerAbstract
      */
-    public function resolve(string $class);
+    public function resolve(string $class, $resourceTransformer);
 }

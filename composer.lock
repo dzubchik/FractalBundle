@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34188753de1bd17e3ed08ec5199ddcd8",
-    "content-hash": "0e6341c6b259f2117e8b45ee462b27ff",
+    "hash": "e73f69f09d28dfc5457754da3235ff74",
+    "content-hash": "e2ae388861a523b82566444533f0f623",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -517,6 +517,42 @@
                 "random"
             ],
             "time": "2017-03-13 16:27:32"
+        },
+        {
+            "name": "paymaxi/compiler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paymaxi/compiler.git",
+                "reference": "6289ea482cabea398414de77eda86798db709645"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paymaxi/compiler/zipball/6289ea482cabea398414de77eda86798db709645",
+                "reference": "6289ea482cabea398414de77eda86798db709645",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "sylius/registry": "^0.19"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Paymaxi\\Component\\Compiler\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Compiler component",
+            "time": "2017-05-30 09:04:46"
         },
         {
             "name": "psr/cache",
@@ -2465,7 +2501,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "paymaxi/compiler": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

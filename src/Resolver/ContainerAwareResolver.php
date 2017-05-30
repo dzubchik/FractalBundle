@@ -20,22 +20,24 @@ final class ContainerAwareResolver implements ResolverInterface, ContainerAwareI
     /**
      * @param string $class
      *
-     * @return bool
+     * @param $resourceTransformer
      *
+     * @return bool
      */
-    public function supports(string $class)
+    public function supports(string $class, $resourceTransformer)
     {
-        return $this->container->has($class);
+        return is_string($resourceTransformer) && $this->container->has($resourceTransformer);
     }
 
     /**
      * @param string $class
      *
-     * @return TransformerAbstract|object
+     * @param $resourceTransformer
      *
+     * @return TransformerAbstract|object
      */
-    public function resolve(string $class)
+    public function resolve(string $class, $resourceTransformer)
     {
-        return $this->container->get($class);
+        return $this->container->get($resourceTransformer);
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests\Fixtures;
 
 use Paymaxi\FractalBundle\PaymaxiFractalBundle;
+use Paymaxi\FractalBundle\Resolver\ContainerAwareResolver;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\Reference;
@@ -29,6 +30,10 @@ class App extends Kernel
             ->register(Services::BOOKS_TRANSFORMER, BookTransformer::class);
         $container
             ->register(Services::COMMENTS_TRANSFORMER, CommentTransformer::class);
+
+        $container
+            ->register(ContainerAwareResolver::class, ContainerAwareResolver::class)
+            ->addTag('fractal.transformer.resolvers');
 
         return $container;
     }

@@ -7,6 +7,7 @@ use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\Scope;
+use League\Fractal\TransformerAbstract;
 use Paymaxi\FractalBundle\Resolver\ResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -53,27 +54,32 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
      */
     private function resolveTransformer(ResourceInterface $resource)
     {
-        if (null === $resource->getTransformer()) {
-            $serviceRegistry = $this->container->get('fractal.transformer.resolvers');
+        $resourceTransformer = $resource->getTransformer();
 
-            if ($resource instanceof Item) {
-                $instance = get_class($resource->getData());
-            } elseif ($resource instanceof Collection) {
-                $instance = get_class($resource->getData()[0]);
-            } else {
-                return;
+        if ($resourceTransformer instanceof TransformerAbstract) {
+            return;
+        }
+
+        $serviceRegistry = $this->container->get('fractal.transformer.resolvers');
+
+        if ($resource instanceof Item) {
+            $instance = get_class($resource->getData());
+        } elseif ($resource instanceof Collection) {
+            $instance = get_class($resource->getData()[0]);
+        } else {
+            return;
+        }
+
+        /** @var ResolverInterface $resolver */
+        foreach ($serviceRegistry->all() as $resolver) {
+            if ($resolver instanceof ContainerAwareInterface) {
+                $resolver->setContainer($this->container);
             }
 
-            /** @var ResolverInterface $resolver */
-            foreach ($serviceRegistry->all() as $resolver) {
-                if ($resolver instanceof ContainerAwareInterface) {
-                    $resolver->setContainer($this->container);
-                }
-
-                if ($resolver->supports($instance)) {
-                    $transformer = $resolver->resolve($instance);
-                    $resource->setTransformer($transformer);
-                }
+            if ($resolver->supports($instance, $resourceTransformer)) {
+                $transformer = $resolver->resolve($instance, $resourceTransformer);
+                $resource->setTransformer($transformer);
+                continue;
             }
         }
     }

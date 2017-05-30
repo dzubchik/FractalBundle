@@ -14,8 +14,10 @@
 		        <argument type="service" id="service_container"/>
 	        </call>
         </service>
+
         <service id="fractal.transformer.resolvers" class="Sylius\Component\Registry\PrioritizedServiceRegistry">
             <argument type="string">Paymaxi\FractalBundle\Resolver\ResolverInterface</argument>
         </service>
+
     </services>
 </container>

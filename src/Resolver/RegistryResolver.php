@@ -30,10 +30,11 @@ final class RegistryResolver implements ResolverInterface
     /**
      * @param string $class
      *
-     * @return bool
+     * @param $resourceTransformer
      *
+     * @return bool
      */
-    public function supports(string $class)
+    public function supports(string $class, $resourceTransformer)
     {
         return $this->registry->has($class);
     }
@@ -42,9 +43,11 @@ final class RegistryResolver implements ResolverInterface
      *
      * @param string $class
      *
+     * @param $resourceTransformer
+     *
      * @return TransformerAbstract
      */
-    public function resolve(string $class)
+    public function resolve(string $class, $resourceTransformer)
     {
         return $this->registry->get($class);
     }

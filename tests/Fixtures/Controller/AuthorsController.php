@@ -2,7 +2,6 @@
 
 namespace Tests\Fixtures\Controller;
 
-use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
