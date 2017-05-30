@@ -2,6 +2,7 @@
 
 namespace Paymaxi\FractalBundle;
 
+use Doctrine\Common\Util\ClassUtils;
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
@@ -63,9 +64,9 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
         $serviceRegistry = $this->container->get('fractal.transformer.resolvers');
 
         if ($resource instanceof Item) {
-            $instance = get_class($resource->getData());
+            $instance = ClassUtils::getRealClass(get_class($resource->getData()));
         } elseif ($resource instanceof Collection) {
-            $instance = get_class($resource->getData()[0]);
+            $instance = ClassUtils::getRealClass(get_class($resource->getData()[0]));
         } else {
             return;
         }
