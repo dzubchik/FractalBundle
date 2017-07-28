@@ -13,6 +13,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class PaymaxiFractalBundle extends Bundle
 {
+    /**
+     * @param ContainerBuilder $container
+     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new PrioritizedRegistryPass('fractal.transformer.resolvers'));

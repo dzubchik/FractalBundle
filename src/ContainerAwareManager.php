@@ -28,8 +28,8 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
      * Main method to kick this all off. Make a resource then pass it over, and use toArray()
      *
      * @param ResourceInterface $resource
-     * @param string            $scopeIdentifier
-     * @param Scope             $parentScopeInstance
+     * @param string $scopeIdentifier
+     * @param Scope $parentScopeInstance
      *
      * @return Scope
      */
@@ -66,13 +66,33 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
         if ($resource instanceof Item) {
             $instance = ClassUtils::getRealClass(get_class($resource->getData()));
         } elseif ($resource instanceof Collection) {
-            $instance = ClassUtils::getRealClass(get_class($resource->getData()[0]));
+            $data = $resource->getData();
+
+            if (!is_array($data) && !($data instanceof \Traversable)) {
+                throw new \InvalidArgumentException(
+                    sprintf('Expected array or array iterator. Given %s', gettype($data))
+                );
+            }
+
+            $data = ($data instanceof \IteratorAggregate) ? $data->getIterator() : $data;
+
+            $element = is_array($data) ? array_values($data)[0] : $data->current();
+
+            if (!is_object($element)) {
+                throw new \InvalidArgumentException(
+                    sprintf('Element expected to be object. Given %s', gettype($element))
+                );
+            }
+
+            $instance = ClassUtils::getRealClass(get_class($element));
         } else {
             return;
         }
 
-        /** @var ResolverInterface $resolver */
-        foreach ($serviceRegistry->all() as $resolver) {
+        /** @var ResolverInterface[] $resolvers */
+        $resolvers = $serviceRegistry->all();
+
+        foreach ($resolvers as $resolver) {
             if ($resolver instanceof ContainerAwareInterface) {
                 $resolver->setContainer($this->container);
             }
