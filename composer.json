@@ -15,8 +15,8 @@
     },
     "require": {
         "php": ">=7.0",
-        "league/fractal": "^0.16.0",
-        "paymaxi/compiler": "0.1.x-dev",
+        "league/fractal": "^0.16",
+        "paymaxi/compiler": "^0.1",
         "symfony/framework-bundle": "^2.7|^3.0"
     },
     "require-dev": {
