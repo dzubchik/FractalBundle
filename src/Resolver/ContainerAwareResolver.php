@@ -26,7 +26,7 @@ final class ContainerAwareResolver implements ResolverInterface, ContainerAwareI
      */
     public function supports(string $class, $resourceTransformer)
     {
-        return is_string($resourceTransformer) && $this->container->has($resourceTransformer);
+        return \is_string($resourceTransformer) && $this->container->has($resourceTransformer);
     }
 
     /**

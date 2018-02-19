@@ -64,27 +64,27 @@ class ContainerAwareManager extends Manager implements ContainerAwareInterface
         $serviceRegistry = $this->container->get('fractal.transformer.resolvers');
 
         if ($resource instanceof Item) {
-            $instance = ClassUtils::getRealClass(get_class($resource->getData()));
+            $instance = ClassUtils::getRealClass(\get_class($resource->getData()));
         } elseif ($resource instanceof Collection) {
             $data = $resource->getData();
 
-            if (!is_array($data) && !($data instanceof \Traversable)) {
+            if (!\is_array($data) && !($data instanceof \Traversable)) {
                 throw new \InvalidArgumentException(
-                    sprintf('Expected array or array iterator. Given %s', gettype($data))
+                    sprintf('Expected array or array iterator. Given %s', \gettype($data))
                 );
             }
 
             $data = ($data instanceof \IteratorAggregate) ? $data->getIterator() : $data;
 
-            $element = is_array($data) ? array_values($data)[0] : $data->current();
+            $element = \is_array($data) ? array_values($data)[0] : $data->current();
 
-            if (!is_object($element)) {
+            if (!\is_object($element)) {
                 throw new \InvalidArgumentException(
-                    sprintf('Element expected to be object. Given %s', gettype($element))
+                    sprintf('Element expected to be object. Given %s', \gettype($element))
                 );
             }
 
-            $instance = ClassUtils::getRealClass(get_class($element));
+            $instance = ClassUtils::getRealClass(\get_class($element));
         } else {
             return;
         }
